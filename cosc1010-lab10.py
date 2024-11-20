@@ -1,12 +1,10 @@
-# Your Name Here
+# Adrianna Francone
 # UWYO COSC 1010
-# Submission Date
-# Lab XX
-# Lab Section: 
-# Sources, people worked with, help given to: 
-# your
-# comments
-# here
+# 11/20/2024
+# Lab 10
+# Lab Section: 15
+# Sources, people worked with, help given to: Lecture Slides
+
 
 #import modules you will need 
 
@@ -36,6 +34,11 @@ def get_hash(to_hash):
 
 # - Read in the value stored within `hash`.
 #   - You must use a try and except block.
+path = Path('hash')
+try:
+    contents=path.read_text()
+except FileNotFoundError:
+    print("File is not found")
 
 
 # Read in the passwords in `rockyou.txt`.
@@ -43,3 +46,17 @@ def get_hash(to_hash):
 # Hash each individual password and compare it against the stored hash.
 # - When you find the match, print the plaintext version of the password.
 # - End your loop.
+path_2 = Path('rockyou.txt')
+try:
+    contents_2 = path_2.read_text()
+except FileNotFoundError:
+    print('This file can not be found')
+else:
+    lines = contents_2.splitlines()
+    for line in lines:
+        line_hash = get_hash(line)
+        if line_hash == contents:
+            print(line)
+        else:
+            continue
+        
